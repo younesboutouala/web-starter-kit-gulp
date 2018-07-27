@@ -21,6 +21,7 @@ const sequence = require('run-sequence');
 const uglify = require('gulp-uglify');
 const plumber = require('gulp-plumber');
 const gutil = require('gulp-util');
+const tinify = require('gulp-tinify');
 
 /**
  * Set paths
@@ -130,6 +131,7 @@ gulp.task('clean', () => del('./build'));
 gulp.task('assets', (callback) => sequence(
   ['data'],
   ['fonts'],
+  ['tinify'],
   ['images'],
   ['media'],
   ['misc'],
@@ -164,6 +166,19 @@ gulp.task('fonts', () => gulp
   .pipe(gulp.dest(`${path.build}/fonts`))
 );
 
+/**
+ * Copy tiny files
+ * -----------------------------------------------------------------------------
+ */
+
+gulp.task('tinify', () => gulp
+  // Select files
+  .src(`${path.src}/images/**/*`)
+  // Check for changes
+  .pipe(tinify('7nTRLjfMPGFuPjS1oCQMdBiTOfDKC6vf'))
+  // Save files
+  .pipe(gulp.dest(`${path.build}/images`))
+);
 /**
  * Copy image files
  * -----------------------------------------------------------------------------
