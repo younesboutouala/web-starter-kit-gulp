@@ -6,6 +6,9 @@ block variables
   - var description = "Web Starter Kit";
 
 block content
-  h1 Web Starter Kit
-  +sample("I'm a sample mixin with class modifier!")(class="c-sample--modifier")
-  img(src="images/ban1.jpg")
+  .container
+    .row
+      .col-sm
+        h1 Web Starter Kit
+        +sample("I'm a sample mixin with class modifier!")(class="c-sample--modifier")
+        img(src="images/ban1.jpg")
